@@ -4,9 +4,9 @@
 %table#movies
   %thead
     %tr
-      %th Movie Title
-      %th Rating
-      %th Release Date
+      = th_sortable "title", "Movie Title", opts = { :id => 'title_header' }
+      = th_sortable "rating"
+      = th_sortable "release_date", "Release Date", opts = { :id => 'release_date_header' }
       %th More Info
   %tbody
     - @movies.each do |movie|
