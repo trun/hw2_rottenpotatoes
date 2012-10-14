@@ -8,7 +8,9 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order sort_column
+    @all_ratings = Movie.ratings
+    params[:ratings] ||= params[:commit].present? ? {} : Hash[@all_ratings.map { |x| [x, 1] }]
+    @movies = Movie.find_by_ratings_and_order params[:ratings].keys, sort_column
   end
 
   def new
